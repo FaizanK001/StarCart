@@ -1,4 +1,4 @@
-import { createSlice, current, nanoid } from '@reduxjs/toolkit'
+import { createSlice, nanoid } from '@reduxjs/toolkit'
 
 const createFave = (fave, name) => ({
 	id: nanoid(),
@@ -13,9 +13,15 @@ export const favesSlice = createSlice({
 	initialState,
 	reducers: {
 		addFave: (state, action) => {
+			/* const itemIndex = state.findIndex((item) => item.id === action.payload.id)
+			state.fave.includes(action.payload.title) */
+
 			const name = action.payload.name ? action.payload.name : action.payload.title ? action.payload.title : 'no name'
 			const fave = createFave(action.payload, name)
-			state.push(fave)
+			console.log(fave)
+
+		    state.push(fave)
+
 		},
 		updateFave: (state, action) => {
 			// find fave
@@ -29,8 +35,12 @@ export const favesSlice = createSlice({
 			// return state
 		},
 		removeFave: (state, action) => {
-			// const id = action.payload
-			console.log('faves', current(state))
+			const id = action.payload
+
+			 const removeId = state.filter((item) => item.id !== id);
+
+			return removeId;
+
 			/*
 			 ! remove fave code here */
 			/*

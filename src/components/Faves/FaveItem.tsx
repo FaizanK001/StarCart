@@ -1,12 +1,17 @@
- import { Button,   List, Rating, } from 'semantic-ui-react'
 
+import { Button,   ButtonProps,   List, Rating, RatingProps, } from 'semantic-ui-react'
+
+type results ={
+	name: string
+	rating: string;
+}
  interface Props{
-	 fave:any;
-	 handleRating:any;
-	 handleRemove:any;
+	 fave: results;
+	 handleRating: (event: React.MouseEvent<HTMLDivElement>, data: RatingProps) => void;
+	 handleRemove: (event: React.MouseEvent<HTMLButtonElement>, data: ButtonProps) => void
  }
-
 const FaveItem = ({ fave, handleRating, handleRemove }:Props)=> (
+
 	<List.Item>
 		<img className='ui mini circular image' src="avatar.jpg" alt="avatar" />
 		<List.Content>

@@ -14,6 +14,7 @@ export const store = configureStore({
 		app: appSlice.reducer,
 		[swapApi.reducerPath]: swapApi.reducer,
 	},
-	middleware: getDefaultMiddleware => getDefaultMiddleware().concat(swapApi.middleware),
+	middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false }).concat(swapApi.middleware),
+
 })
 setupListeners(store.dispatch)

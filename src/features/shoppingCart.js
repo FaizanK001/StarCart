@@ -23,11 +23,26 @@ export const cartSlice = createSlice({
 		addItem: (state, action) => {
 			// create item
 			// add item to items
+			const itemID = action.payload.id ? action.payload.id : 'no item'
+			const addItem = createItem(action.payload, itemID)
+		state.push(addItem)
+
 		},
 		removeItem: (state, action) => {
 			// find fave
 			// remove fave
+			const id = action.payload
+
+			 const removeId = state.filter((item) => item.id !== id);
+
+			return removeId;
 		},
+		editCartItem: (state, action) => {
+			return state.map((item) =>
+            item.id === action.payload.id ? { ...item, ...action.payload.data } : item,
+      );
+
+		}
 	},
 })
 
